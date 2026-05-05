@@ -1,8 +1,8 @@
 import GUI from "lil-gui";
 import { renderHexDump } from "./hexdump.ts";
 import { render } from "./renderer.ts";
-import type { Font } from "./ttf/parser.ts";
 import { state } from "./state.ts";
+import type { Font } from "./ttf/parser.ts";
 
 async function init(): Promise<void> {
   const response = await fetch("/fonts/Andle_Mono.ttf");
@@ -50,15 +50,18 @@ async function init(): Promise<void> {
   gui.add(state, "fontSize", 8, 128, 1).name("Font size");
   gui.add(state, "glyphIndex", 0, 255, 1).name("Glyph index");
   gui.add(state, "antialias").name("Antialias");
-  gui.add(controls, "showHexDump").name("Hex dump").onChange((value: boolean) => {
-    if (value) {
-      dumpEl = renderHexDump(bytes);
-      document.body.appendChild(dumpEl);
-    } else {
-      dumpEl?.remove();
-      dumpEl = null;
-    }
-  });
+  gui
+    .add(controls, "showHexDump")
+    .name("Hex dump")
+    .onChange((value: boolean) => {
+      if (value) {
+        dumpEl = renderHexDump(bytes);
+        document.body.appendChild(dumpEl);
+      } else {
+        dumpEl?.remove();
+        dumpEl = null;
+      }
+    });
 
   const font = null as unknown as Font;
   render(canvas, font);

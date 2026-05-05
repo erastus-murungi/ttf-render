@@ -12,9 +12,9 @@ export function renderHexDump(bytes: Uint8Array): HTMLElement {
 
   const hHex = document.createElement("span");
   hHex.style.cssText = "min-width:380px";
-  hHex.textContent = Array.from({ length: 16 }, (_, i) =>
-    i.toString(16).padStart(2, "0"),
-  ).join(" ");
+  hHex.textContent = Array.from({ length: 16 }, (_, i) => i.toString(16).padStart(2, "0")).join(
+    " ",
+  );
 
   const hBin = document.createElement("span");
   hBin.textContent = "binary (msb → lsb per byte)";
@@ -42,13 +42,7 @@ export function renderHexDump(bytes: Uint8Array): HTMLElement {
         const b = chunk[j];
         byteEl.textContent = b.toString(16).padStart(2, "0");
         byteEl.style.color =
-          b === 0
-            ? "#45475a"
-            : b < 32 || b > 126
-              ? "#cba6f7"
-              : b < 128
-                ? "#89dceb"
-                : "#fab387";
+          b === 0 ? "#45475a" : b < 32 || b > 126 ? "#cba6f7" : b < 128 ? "#89dceb" : "#fab387";
       } else {
         byteEl.textContent = "  ";
       }
