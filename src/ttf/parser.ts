@@ -85,6 +85,6 @@
 
 export type Font = any; // Placeholder type until parsing is implemented
 
-export function parseFont(buffer: ArrayBuffer): never {
-  throw new Error("Font parsing not implemented yet");
+export function parseFont(buffer: ArrayBuffer) {
+  console.log("buffer", buffer);
 }

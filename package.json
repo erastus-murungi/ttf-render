@@ -10,7 +10,8 @@
     "test": "vitest run",
     "lint": "biome lint ./src ./test",
     "format": "biome format --write ./src ./test",
-    "check": "biome check --write ./src ./test"
+    "check": "biome check --write ./src ./test",
+    "debug:parse": "bun --inspect-brk scripts/debug-parse.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.14",

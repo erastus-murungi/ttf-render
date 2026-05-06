@@ -1,7 +1,15 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  test: {
-    environment: 'node',
+  build: {
+    rollupOptions: {
+      input: {
+        main: "index.html",
+        curve: "curve.html",
+      },
+    },
   },
-})
+  test: {
+    environment: "node",
+  },
+});
