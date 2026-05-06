@@ -13,7 +13,11 @@ const paramaters = {
 };
 
 const canvas = document.getElementById("curve") as HTMLCanvasElement;
-const ctx = canvas.getContext("2d")!;
+const ctx: CanvasRenderingContext2D = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+if (!ctx) {
+  throw new Error("Failed to get 2D context");
+}
 
 function drawQuadraticBezierCurve({
   ctx,

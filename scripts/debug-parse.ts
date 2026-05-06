@@ -14,11 +14,22 @@ import { parseCmap } from "../src/ttf/tables/cmap.ts";
 import { parseHmtx } from "../src/ttf/tables/hmtx.ts";
 import { parseGlyf } from "../src/ttf/tables/glyf.ts";
 
-// ─── Load ────────────────────────────────────────────────────────────────────
-
+function uint32ToTag(value: number): string {
+  return String.fromCharCode(
+    (value >> 24) & 0xff,
+    (value >> 16) & 0xff,
+    (value >> 8) & 0xff,
+    value & 0xff,
+  );
+}
 const raw = readFileSync("fonts/Andale_Mono.ttf");
 const buffer: ArrayBuffer = raw.buffer.slice(
   raw.byteOffset,
   raw.byteOffset + raw.byteLength,
 );
 const view = new DataView(buffer);
+const scalerType = view.getUint32(0, /* littleEndian */ false);
+const ofaScalerTag = uint32ToTag(scalerType);
+const numTables = view.getUint16(4, false);
+console.log("scaler type", ofaScalerTag);
+console.log("num tables", numTables);

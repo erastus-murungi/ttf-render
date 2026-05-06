@@ -86,5 +86,7 @@
 export type Font = any; // Placeholder type until parsing is implemented
 
 export function parseFont(buffer: ArrayBuffer) {
-  console.log("buffer", buffer);
+  const view = new DataView(buffer);
+  const scalerType = view.getUint32(0, /* littleEndian */ true);
+  console.log("buffer", scalerType);
 }

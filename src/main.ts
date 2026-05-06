@@ -5,10 +5,10 @@ import { state } from "./state.ts";
 import type { Font } from "./ttf/parser.ts";
 
 async function init(): Promise<void> {
-  const response = await fetch("/fonts/Andle_Mono.ttf");
+  const response = await fetch("/fonts/Andale_Mono.ttf");
   if (!response.ok) {
     document.body.innerHTML =
-      '<p style="font-family:monospace;padding:20px">Drop a .ttf file into <code>fonts/Andle_Mono.ttf</code> and reload.</p>';
+      '<p style="font-family:monospace;padding:20px">Drop a .ttf file into <code>public/fonts/Andale_Mono.ttf</code> and reload.</p>';
     return;
   }
 
