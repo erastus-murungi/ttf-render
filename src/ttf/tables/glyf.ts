@@ -45,7 +45,9 @@ export function parseGlyf(view: DataView, offset: number): Glyph | null {
     if (flag & 0x08) {
       // repeat flag
       const repeatCount = view.getUint8(pos++);
-      for (let r = 0; r < repeatCount; r++) flags.push(flag);
+      for (let r = 0; r < repeatCount; r++) {
+        flags.push(flag);
+      }
     }
   }
 

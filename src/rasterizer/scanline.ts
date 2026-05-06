@@ -30,7 +30,9 @@ export function scanlineFill(
       const x0 = Math.ceil(intersections[i]);
       const x1 = Math.floor(intersections[i + 1]);
       for (let x = x0; x <= x1; x++) {
-        if (x < 0 || x >= width) continue;
+        if (x < 0 || x >= width) {
+          continue;
+        }
         const idx = (y * width + x) * 4;
         pixels[idx] = color[0];
         pixels[idx + 1] = color[1];

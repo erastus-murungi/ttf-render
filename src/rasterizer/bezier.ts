@@ -31,7 +31,9 @@ export function flattenContour(points: { x: number; y: number; onCurve: boolean 
       if (prev.onCurve) {
         const segments = flattenQuadratic(prev, curr, next);
         // skip first point (already added as prev on-curve)
-        for (let s = 1; s < segments.length; s++) result.push(segments[s]);
+        for (let s = 1; s < segments.length; s++) {
+          result.push(segments[s]);
+        }
       }
     }
   }

@@ -34,10 +34,14 @@ function buildFormat4Lookup(view: DataView, offset: number): (charCode: number) 
   return (charCode: number): number => {
     for (let i = 0; i < segCount; i++) {
       const endCount = view.getUint16(endCountOffset + i * 2, false);
-      if (charCode > endCount) continue;
+      if (charCode > endCount) {
+        continue;
+      }
 
       const startCount = view.getUint16(startCountOffset + i * 2, false);
-      if (charCode < startCount) return 0;
+      if (charCode < startCount) {
+        return 0;
+      }
 
       const idRangeOffset = view.getUint16(idRangeOffsetBase + i * 2, false);
       if (idRangeOffset === 0) {

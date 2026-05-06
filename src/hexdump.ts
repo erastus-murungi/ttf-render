@@ -153,7 +153,9 @@ export function renderHexDump(bytes: Uint8Array): HTMLElement {
 
   function render(scrollTop: number) {
     const firstRow = Math.max(0, Math.floor(scrollTop / ROW_HEIGHT) - OVERSCAN);
-    if (firstRow === lastFirstRow) return;
+    if (firstRow === lastFirstRow) {
+      return;
+    }
     lastFirstRow = firstRow;
 
     win.style.transform = `translateY(${firstRow * ROW_HEIGHT}px)`;
@@ -184,7 +186,9 @@ export function renderHexDump(bytes: Uint8Array): HTMLElement {
   // Must run after layout, so we schedule a single rAF.
   requestAnimationFrame(() => {
     const w = pool[0].binEl.offsetWidth;
-    if (w > 0) hBin.style.width = `${w}px`;
+    if (w > 0) {
+      hBin.style.width = `${w}px`;
+    }
   });
 
   return root;

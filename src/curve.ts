@@ -114,7 +114,9 @@ function hitTest(mx: number, my: number) {
   for (const pt of Object.values(pts)) {
     const dx = mx - pt.x;
     const dy = my - pt.y;
-    if (dx * dx + dy * dy <= (POINT_RADIUS + 4) ** 2) return pt;
+    if (dx * dx + dy * dy <= (POINT_RADIUS + 4) ** 2) {
+      return pt;
+    }
   }
   return null;
 }

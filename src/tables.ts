@@ -109,15 +109,13 @@ function field(key: string, value: string | number): HTMLElement {
 function fieldGrid(...pairs: [string, string | number][]): HTMLElement {
   const grid = document.createElement("div");
   grid.className = "field-grid";
-  for (const [k, v] of pairs) grid.appendChild(field(k, v));
+  for (const [k, v] of pairs) {
+    grid.appendChild(field(k, v));
+  }
   return grid;
 }
 
-function dataTable(
-  headers: string[],
-  rows: (string | number)[][],
-  cap?: number,
-): HTMLElement {
+function dataTable(headers: string[], rows: (string | number)[][], cap?: number): HTMLElement {
   const wrap = document.createElement("div");
   const table = document.createElement("table");
   table.className = "data-table";
@@ -318,7 +316,9 @@ function buildMainPanel(
       content = renderCmap(view, rec);
       break;
     case "loca":
-      if (headData) content = renderLoca(view, rec, numGlyphs, headData.indexToLocFormat);
+      if (headData) {
+        content = renderLoca(view, rec, numGlyphs, headData.indexToLocFormat);
+      }
       break;
     case "glyf": {
       const locaRec = allTables.get("loca");
@@ -337,9 +337,7 @@ function buildMainPanel(
     hexTitle.style.cssText = "color:var(--subtext);font-size:11px;margin-bottom:12px";
     hexTitle.textContent = "No parser available — showing raw bytes";
     panel.appendChild(hexTitle);
-    panel.appendChild(
-      renderHexDump(bytes.subarray(rec.offset, rec.offset + rec.length)),
-    );
+    panel.appendChild(renderHexDump(bytes.subarray(rec.offset, rec.offset + rec.length)));
   }
 
   return panel;
@@ -400,9 +398,7 @@ async function init() {
     const size = document.createElement("span");
     size.className = "table-size";
     size.textContent =
-      rec.length >= 1024
-        ? `${(rec.length / 1024).toFixed(1)} KB`
-        : `${rec.length} B`;
+      rec.length >= 1024 ? `${(rec.length / 1024).toFixed(1)} KB` : `${rec.length} B`;
 
     row.appendChild(tag);
     row.appendChild(size);
@@ -416,7 +412,9 @@ async function init() {
 
   // select first table by default
   const firstRow = sidebar.querySelector<HTMLElement>(".table-row");
-  if (firstRow && records[0]) select(records[0], firstRow);
+  if (firstRow && records[0]) {
+    select(records[0], firstRow);
+  }
 }
 
 init().catch(console.error);
